@@ -1,0 +1,29 @@
+#loginModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby=loginModalLabel", aria-hidden="true")
+ form( method="post",action="/login")
+  .modal-header
+    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+    h5 
+      |欢迎来到
+      |#{title}
+    p 
+      |还没注册？
+      a#register(href="/signup")
+        加入#{title}吧
+  .modal-body
+    table
+      tr
+        td
+          邮箱
+        td
+          input#login_email(type="text",name="email")
+        td
+          例：username@abc.com
+      tr
+        td
+          密码
+        td  
+          input#login_password(type="password",name="password")   
+        td
+          例：pass#*123
+  .modal-footer  
+      input#login(type="submit", value="登录")

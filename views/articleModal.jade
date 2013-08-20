@@ -1,0 +1,22 @@
+//#myModal.modal(tabindex="-1", role="dialog", aria-labelledby="myModalLabel")
+if(article != undefined)
+  .modal-header
+    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+    a#myModalLabel(href="＃")
+     article.title
+  .modal-body
+    p= article.body
+    small.pull-right.muted= article.created_at
+  .modal-footer
+    - each comment in article.comments
+      .blockquote= comment.comment
+        cite 
+          a(href="#"+comment.author) #{comment.author}
+          small.pull-right.muted= comment.created_at
+    hr
+    form( method="post",action="./addComment")
+      input(type="hidden",name="_id", id="editArticleBody", value=article._id.toHexString())
+      textarea( name="comment", rows=3, placeholder=".span12") 
+      br  
+      author:input(type="text",name="person",id="person")   
+      input#editArticleSubmit.pull-right(type="submit", value="评论")

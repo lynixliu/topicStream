@@ -1,0 +1,30 @@
+include newpost
+include locationbar
+.accordion(data-spy="scroll",data-target=".nav-stacked")
+  - each article in articles
+    .accordion-group
+      .accordion-heading(id=article._id)
+        if(user._id == article.author._id)
+          form(method="post",action="/column/deleteArticle")
+            input(type="hidden",name="_id", value=article._id.toHexString())
+            button.close.btn-mini(type="submit", aria-hidden="false") 删除 &times;
+        h4= article.title
+      .accordion-body
+        .accordion-inner 
+          p= article.body
+          a.accordion-toggle(data-toggle="collapse", href="#comment"+article._id.toHexString())
+            if(article.comments == undefined)
+              评论
+            else
+              |#{article.comments.length}条评论
+      .accordion-body.collapse(id="comment"+article._id)
+        .accordion-inner 
+          - each comment in article.comments
+            p= comment.comment
+            hr
+          if(user._id)
+            form(method="post",action="/column/addComment")
+              textarea.span8(name="comment", rows=3)
+              input(type="hidden",name="_id", value=article._id.toHexString())
+              br   
+              input.btn.btn-mini(type="submit", value="评论")

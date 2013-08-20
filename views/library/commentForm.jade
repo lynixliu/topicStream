@@ -1,0 +1,7 @@
+mixin commentForm(article)
+  form( method="post",action=article.class+"/addComment")
+    input(type="hidden",name="_id", id=editArticleBody, value=article._id.toHexString())
+    textarea( name="_id", rows=3, placeholder=".span12") 
+      br  
+    author:input(type="text",name="person",id="addCommentPerson")   
+    input#editArticleSubmit.pull-right(type="submit", value="评论")

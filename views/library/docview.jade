@@ -1,0 +1,48 @@
+include newpost
+include locationbar
+.accordion(data-spy="scroll",data-target=".nav-stacked")
+  - var base_url = locations[locations.length-1].address
+  - each article in articles
+    .accordion-group
+      .accordion-heading(id=article._id)
+        if(((article.author!= undefined)&&(user._id == article.author._id))|| (user.level=="master"))
+          form(method="post",action=base_url+"deleteArticle")
+            input(type="hidden",name="_id", value=article._id.toHexString())
+            button.close.btn-mini(type="submit", aria-hidden="false") 删除 &times;
+        h4= article.title
+      .accordion-body
+        .accordion-inner 
+          if(article.author != undefined)
+            ul.thumbnails.span1
+              .thumbnail
+               img(src=article.author.image, alt="/images/default1.jpg")
+               h3= article.author.name
+               p
+                if(article.author.followers !=undefined)
+                  |粉丝#{article.author.followers.length}
+                if(article.author.followings !=undefined)
+                  |关注#{article.author.followings.length}
+ 
+          p= article.body
+          a.accordion-toggle(data-toggle="collapse", href="#comment"+article._id.toHexString())
+            if(article.comments == undefined)
+              评论
+            else
+              |#{article.comments.length}条评论
+      .accordion-body.collapse(id="comment"+article._id)
+        .accordion-inner 
+          - var i=1
+          - each comment in article.comments
+            blockquote
+              em.muted.pull-right= i++
+              p= comment.comment
+              if(comment.person != undefined)
+                small
+                  a(title=comment.person.name)= comment.person.name
+            hr
+          if(user._id)
+            form(method="post",action=base_url+"addComment")
+              textarea.span7(name="comment", rows=3)
+              input(type="hidden",name="_id", value=article._id.toHexString())
+              br   
+              input.btn.btn-mini(type="submit", value="评论")

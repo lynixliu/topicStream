@@ -1,0 +1,24 @@
+#menu.navbar.navbar-static-top
+  .navbar-inner
+    .container
+      a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(href="/")= title 
+      .nav-collapse
+        ul.nav
+          if(locations[locations.length-1].name == '专栏')
+            li.active: a(href='/column') 专栏
+          else
+            li: a(href='/column') 专栏
+            
+          if(locations[locations.length-1].name == '话题')
+            li.active: a(href='/topics') 话题
+          else
+            li: a(href='/topics') 话题
+        form.navbar-search
+          input.search-query(type="text",placeholder="找话题")
+        if(user != undefined)  
+          ul.nav.pull-right
+            include userMenubar

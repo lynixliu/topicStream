@@ -1,0 +1,23 @@
+extends ../library/layout
+block sidebar
+  ul.nav.nav-tabs.nav-stacked.affix
+    - each user in users
+     li
+       a(href="#"+user._id)= user.name
+block content
+  include ../library/locationbar
+  well
+   row.span12
+   h4
+    |User Count: #{users.length}
+   - var i = 0
+   - each user in users
+    ul.thumbnails.span3(id=user._id)
+      include nameCard
+      if(relations[i++])
+        if(relations[i++].isFollowed)
+          label 已关注
+        else
+          label 加关注
+
+       

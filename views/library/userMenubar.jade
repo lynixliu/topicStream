@@ -1,0 +1,18 @@
+if (user.email == '')
+  li: a(href='#signupModal', role="button", data-toggle="modal") 注册
+  li: a(href='#loginModal', role="button", data-toggle="modal") 登录
+else 
+  li.dropdown
+    a.dropdown-toggle(href='#',data-toggle='dropdown')
+      img(src=user.image,alt="image",height="24px",width="24px")
+      b.caret
+    ul.dropdown-menu
+      li: a(href='/') 我的主页
+      //li: a(href='#') 私信
+      li: a(href='/userSettings') 设置
+  if(user.level == 'master')
+    li: a(href='userAdmin') 管理
+  if(user.level != '')
+    li: a(href='users') 用户列表
+  li: a.pull-right(href="#newpostmodal", role="button", data-toggle="modal") 发帖
+  li: a(href='/logout', role='button', data-toggle='modal') 退出

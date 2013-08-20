@@ -1,0 +1,11 @@
+ul.breadcrumb
+  - each location in locations
+    - if(location.state == 'active')
+        li.active= location.name
+    - else
+        li 
+          a(href=location.address)= location.name
+          span.divider >
+  
+
+      

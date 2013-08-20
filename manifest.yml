@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: you7area
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: hp
+    url: ${name}.${target-base}
+    mem: 64M
+    instances: 1
+    services:
+      node-mongo-blog:
+        type: mongodb

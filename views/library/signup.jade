@@ -1,0 +1,44 @@
+#signupModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+ form.form-horizontal#signupForm( method="post",action="/signup",novalidate="novalidate")
+  .modal-header
+    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+    h5
+      感谢加入 #{title}
+  
+  .modal-body
+    .control-group#namegroup
+      label.control-label(for="username")用户名
+      .controls
+        input#username(type="text",name="username") 
+        span.help-inline
+        
+    .control-group#emailgroup
+      label.control-label(for="email") Email
+      .controls
+        input#email(type="email",name="email")
+        span.help-inline
+        
+    .control-group#passgroup
+      label.control-label(for="password") 密码
+      .controls
+        input(id="password",name="password",type="password")
+        span.help-inline  
+              
+    .control-group#repassgroup
+      label.control-label(for="confirm_password") 密码确认
+      .controls
+        input(id="confirm_password",name="confirm_password",type="password")
+        span.help-inline
+        
+    .well.well-small
+      center 服务条款
+      ol
+        li 条款1
+        li ...
+        li 条款n
+  .modal-footer
+    input.btn.btn-primary(type='submit', value='同意以上条款并注册')
+
+
+
+  

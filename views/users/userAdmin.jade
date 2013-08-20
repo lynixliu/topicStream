@@ -1,0 +1,29 @@
+extends ../library/layout
+block sidebar
+  ul.nav.nav-tabs.nav-stacked.affix
+    - each user in users
+     li
+       a(href="#"+user._id)= user.name
+block content
+  include ../library/locationbar
+  table.table.table-striped.table-hover
+    tr
+      th
+        |Username
+      th
+        |action
+     - each user in users
+      if(user != undefined)
+       tr(id=#{user._id})
+        td= user.name
+        td
+         form(method="post", action="/userDelete") 
+          input(type="hidden", name="id", value= user._id.toHexString())
+          input.btn.btn-danger(type='submit', value='删除')
+       tr
+        form(method="post", action="/userUpdateLevel")
+          td
+            input(name="level", value= user.level)
+          td 
+            input(type="hidden", name="id", value= user._id.toHexString())
+            input.btn.btn-success(type='submit', value='变更')

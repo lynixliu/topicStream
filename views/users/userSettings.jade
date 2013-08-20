@@ -1,0 +1,46 @@
+extends ../library/layout
+block content
+  include ../library/locationbar
+  h3 完善的用户信息将让您赢得更多关注
+  form(method="post",action="/userUpdate")
+    table.table.table-striped
+      tr
+        td   
+          |用户名
+        td
+          input(type='text', name='updateName', value= user.name)
+      tr
+        td 
+          |Email
+        td  
+          label= user.email
+      tr
+        td 
+          |头像
+        td
+          if(user.image =="")
+            img(src="/images/default1.jpg",height="36px",width="36px") br
+            input(name='updateImage',value= user.image)
+          else
+            img(src=user.image,height="36px",width="36px")br
+            input(name='updateImage',value= user.image)
+      tr
+        td 
+          |我的简介
+        td
+          input(type='text', name='profile',value= user.profile)
+    input(type='submit', value='修改')
+  h3 修改密码  
+  form(method="post",action="/passwordReset")
+    table.table.table-striped
+      tr
+        td
+          |原密码
+        td
+          input(type='password', name='oldPass')
+      tr
+        td   
+          |新密码 
+        td  
+          input(type='password', name='newPass')
+    input(type='submit', value='重置密码')

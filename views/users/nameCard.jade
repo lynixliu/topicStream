@@ -1,0 +1,8 @@
+.thumbnail.span2
+   img(src=user.image, alt="/images/default1.jpg")
+   h3= user.name
+   p
+    if(user.followers !=undefined)
+      |粉丝#{user.followers.length}
+    if(user.followings !=undefined)
+      |关注#{user.followings.length}

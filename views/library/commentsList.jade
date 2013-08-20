@@ -1,0 +1,5 @@
+- each comment in article.comments
+    .blockquote= comment.comment
+      cite 
+        a(href="#"+comment.author) #{comment.author}
+        small.pull-right.muted= comment.created_at

@@ -1,0 +1,11 @@
+#newpostmodal.modal.hide.fade(tabindex="-1", role="dialog",data-backdrop="false")
+  form( method="post",action=locations[locations.length-1].address+"addArticle") 
+    .modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+      标题：
+      input(type="text", name="title", id="editArticleTitle")
+    .modal-body
+      textarea.span7( name="body", rows=3, id="editArticleBody", placeholder=".span12") 
+      br  
+      input#editArticleSubmit.pull-right(type="submit", value="发布")
+

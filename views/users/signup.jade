@@ -1,0 +1,61 @@
+extends layout
+block content
+  h4= title
+  form.form-horizontal#signupForm( method="post",action="/signup")
+    .control-group#emailgroup
+      label.control-label(for="inputEmail") Email
+      .controls
+        input.required#inputEmail(type="text",name="inputEmail")
+        help-inline  此email地址将作为登录名, user@email.com
+        
+    .control-group#passgroup
+      label.control-label(for="inputPassword") 密码
+      .controls
+        input.required#inputPassword(type="password",name="inputPassword")
+        help-inline  aBc#123
+        
+    .control-group#repassgroup
+      label.control-label(for="reinputPassword") 密码确认
+      .controls
+        input.required#reinputPassword(type="password",equalTo="#inputPassword",name="reinputPassword")
+        
+    .control-group#namegroup
+      label.control-label(for="showName")用户名
+      .controls
+        input.required#showName(type="text",name="showName") 
+        help-inline  用户名将为所有用户所见
+    input#signupSubmit(type='submit', value='注册')
+    
+  script
+    $(document).ready(function(){
+      $("#signupForm").validate({
+        event:"keyup"||"blur",
+        rules:{
+          inputEmail:{
+            required:true,
+            email:true
+          },
+        inputPassword:"required",
+        reinputPassword:{
+          required:true,
+          equalTo:"#password"
+        },
+        showName:"required",
+        confirm_password:{
+          required:true,
+          equalTo:"#password"
+        }
+       },
+       messages:{
+         signupForm:{
+           required:"必填项",
+           email:"格式有误"
+         },
+         inputPassword:"必填项",
+         reinputPassword:{
+           required:"必填项",
+           equalTo:"密码不一致"
+         }
+      });
+    })
+    
